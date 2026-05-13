@@ -11,11 +11,11 @@
 
 
 <body>
-  <?php require 'header.php'; ?>
+  <?php require __DIR__ . '/includes/header.php'; ?>
 
   <p>Caminho secreto: <a href="experimentos.html">Aqui</a></p>
 
-  <?php require 'footer.php'; ?>
+  <?php require __DIR__ . '/includes/footer.php'; ?>
 </body>
 
 </html>
