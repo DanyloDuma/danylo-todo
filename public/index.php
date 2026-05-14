@@ -14,6 +14,7 @@
   <?php require __DIR__ . '/includes/header.php'; ?>
 
   <p>Caminho secreto: <a href="experimentos.html">Aqui</a></p>
+  <p><a href="form.html">Formulário</a></p>
 
   <?php require __DIR__ . '/includes/footer.php'; ?>
 </body>

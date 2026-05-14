@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário - Experimentos</title>
+</head>
+<body>
+  <form action="experimentos.html" method="get">
+    <fieldset>
+      <legend>Informações Pessoais</legend>
+      
+      <div>
+        <label for="nome">
+          Nome: <abbr title="required">*</abbr>
+        </label>
+        <input type="text" id="nome" name="nome" placeholder="nome" required>
+      </div>
+      
+      <div>
+        <label for="email">
+          Email: <abbr title="required">*</abbr>
+        </label>
+          <input type="email" id="email" name="email" placeholder="email" required>
+      </div>
+      
+      <div>
+        <p>Sexo: <abbr title="required">*</abbr></p>
+        <label for="masculino">
+          <input type="radio" id="masculino" name="sexo" value="masculino" required> Masculino
+        </label>
+        <label for="feminino">
+          <input type="radio" id="feminino" name="sexo" value="feminino"> Feminino
+        </label>
+      </div>
+      
+      <fieldset>
+        <legend>Alergias</legend>
+        <div>
+        <p>Alguma alergia?</p>
+        
+        <label for="alergia_nao">
+          <input type="radio" name="quesAlergia" value="não" id="alergia_nao"> Não
+        </label>
+        
+        
+        <label for="alergia_sim">
+          <input type="radio" name="quesAlergia" value="sim" id="alergia_sim"> Sim
+        </label>
+        
+        <br><br>
+        <p>Se sim, qual delas?</p>
+
+        
+        <label for="alergia_rinite">
+          <input type="checkbox" name="resAlergia" id="alergia_rinite" value="rinite"> Rinite
+        </label>
+        
+        
+        <label for="alergia_sinusite">
+          <input type="checkbox" name="resAlergia" id="alergia_sinusite" value="sinusite"> Sinusite
+        </label>
+        
+        
+        <label for="alergia_dermatite">
+          <input type="checkbox" name="resAlergia" id="alergia_dermatite" value="dermatite"> Dermatite
+        </label>
+      </div>
+      </fieldset>
+      <div>
+        <input type="submit" value="Submeter">
+        <input type="reset" value="Limpar">
+      </div>
+    </fieldset>
+  </form>
+</body>
+</html>
