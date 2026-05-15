@@ -1,8 +1,11 @@
-let num1=7
-let num2=3
+function somar() {
+  let num1 = document.getElementById("num1").value;
+  let num2 = document.getElementById("num2").value;
 
-function somar(num1, num2){
-  return num1+num2;
+  let sum = Number(num1) + Number(num2);
+
+  document.getElementById("soma").textContent = sum;
 }
 
-document.getElementById("soma").innerHTML=somar(num1,num2);
+// ligação do botão à função
+document.getElementById("somarBtn").addEventListener("click", somar);

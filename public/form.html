@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulário somar</title>
-</head>
+</head> 
 <body>
+  <fieldset>
+    <legend>Formulário de soma</legend>
+    <form action="">
+      <label for="num1">Número 1: </label>
+      <input type="number" name="num1" id="num1" required>
+
+      <label for="num2">Número 2: </label>
+      <input type="number" name="num2" id="num2" required>
+      
+      <button type="button" id="somarBtn">Somar</button>
+    </form>
+  </fieldset>
+
   <p id="soma"></p>
   <script src="assets/js/app.js"></script>
 </body>
