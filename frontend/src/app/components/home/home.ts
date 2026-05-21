@@ -6,15 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
-
-  /* meuBoolean=false;
-  atualizaBoorlean(valor: boolean){
-    this.meuBoolean=valor;
-  } */
-
-  submit(){
-    alert("Clicou no botão!");
-  }
-
-}
+export class Home {}
