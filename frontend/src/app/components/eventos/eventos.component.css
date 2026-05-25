@@ -1,0 +1,21 @@
+body{
+  padding: 500px;
+}
+
+.class{
+  border-bottom: 1px solid red;
+  padding: 2em;
+  margin-bottom: 1em;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.items{
+  border: 2px solid blue;
+  height: 100px;
+  width: 200px;
+}

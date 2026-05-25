@@ -5,12 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { DirectivesComponent } from './components/directives/directives.component';
+import { IfRenderComponent } from './components/if-render/if-render.component';
+import { EventosComponent } from './components/eventos/eventos.component';
+import { EmitterComponent } from './components/emitter/emitter.component';
+import { ChangeNumberComponent } from './components/change-number/change-number.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DirectivesComponent
+    DirectivesComponent,
+    IfRenderComponent,
+    EventosComponent,
+    EmitterComponent,
+    ChangeNumberComponent
   ],
   imports: [
     BrowserModule,
