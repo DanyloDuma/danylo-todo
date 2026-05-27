@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './pipes.component.css'
 })
 export class PipesComponent {
+  someText="TESTANDO O PIPE OPERATOR";
 
+  today=new Date();
 }
