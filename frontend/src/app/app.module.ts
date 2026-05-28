@@ -25,12 +25,12 @@ import { TwoWayBindingComponent } from './components/two-way-binding/two-way-bin
     ChangeNumberComponent,
     ListRenderComponent,
     PipesComponent,
-    TwoWayBindingComponent
+    TwoWayBindingComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

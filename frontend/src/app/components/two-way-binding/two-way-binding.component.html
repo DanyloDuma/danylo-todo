@@ -1,13 +1,18 @@
 <div class="class">
-  <h2>Two way Data Binding</h2>
+  <h2>Two way data binding</h2>
   <form>
     <input
       type="text"
-      (ngModel)]="name"
+      [(ngModel)]="name"
       name="name"
-      palceholder="Digite o seu nome"
-    />
-    <input type="submit" value="Enviar">
+      placeholder="Digite o seu nome"
+    >
+    <button type="submit" value="Enviar">Enviar</button>
   </form>
-  <p>O nome é {{name}}</p>
+
+  <div *ngIf="name!==''">
+    <p>O nome é {{name}}</p>
+    <p *ngIf="name == 'Flávio'">Ele é gay</p>
+  </div>
 </div>
+
