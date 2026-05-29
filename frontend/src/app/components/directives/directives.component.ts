@@ -4,12 +4,12 @@ import { Component } from '@angular/core';
   selector: 'app-directives',
   standalone: false,
   templateUrl: './directives.component.html',
-  styleUrl: './directives.component.css'
+  styleUrl: './directives.component.css',
 })
 export class DirectivesComponent {
-  size=40;
-  font='Arial';
-  color='red';
+  size = 40;
+  font = 'Arial';
+  color = 'red';
 
-  classes=["green-title","small-title"];
+  classes = ['green-title', 'small-title'];
 }

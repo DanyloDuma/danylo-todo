@@ -8,9 +8,8 @@ describe('IfRenderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [IfRenderComponent]
-    })
-    .compileComponents();
+      declarations: [IfRenderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IfRenderComponent);
     component = fixture.componentInstance;

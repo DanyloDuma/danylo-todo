@@ -6,13 +6,12 @@
       [(ngModel)]="name"
       name="name"
       placeholder="Digite o seu nome"
-    >
+    />
     <button type="submit" value="Enviar">Enviar</button>
   </form>
 
-  <div *ngIf="name!==''">
-    <p>O nome é {{name}}</p>
+  <div *ngIf="name !== ''">
+    <p>O nome é {{ name }}</p>
     <p *ngIf="name == 'Flávio'">Ele é gay</p>
   </div>
 </div>
-

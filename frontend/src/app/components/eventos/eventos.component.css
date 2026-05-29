@@ -1,20 +1,20 @@
-body{
+body {
   padding: 500px;
 }
 
-.class{
+.class {
   border-bottom: 1px solid red;
   padding: 2em;
   margin-bottom: 1em;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.items{
+.items {
   border: 2px solid blue;
   height: 100px;
   width: 200px;

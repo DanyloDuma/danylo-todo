@@ -4,10 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-pipes',
   standalone: false,
   templateUrl: './pipes.component.html',
-  styleUrl: './pipes.component.css'
+  styleUrl: './pipes.component.css',
 })
 export class PipesComponent {
-  someText="TESTANDO O PIPE OPERATOR";
+  someText = 'TESTANDO O PIPE OPERATOR';
 
-  today=new Date();
+  today = new Date();
 }

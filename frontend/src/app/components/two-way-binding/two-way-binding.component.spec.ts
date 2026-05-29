@@ -8,9 +8,8 @@ describe('TwoWayBindingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TwoWayBindingComponent]
-    })
-    .compileComponents();
+      declarations: [TwoWayBindingComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(TwoWayBindingComponent);
     component = fixture.componentInstance;

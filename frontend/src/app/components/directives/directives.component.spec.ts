@@ -10,9 +10,8 @@ describe('DirectivesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DirectivesComponent]
-    })
-    .compileComponents();
+      declarations: [DirectivesComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DirectivesComponent);
     component = fixture.componentInstance;

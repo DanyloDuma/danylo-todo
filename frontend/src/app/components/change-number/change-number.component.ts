@@ -4,12 +4,12 @@ import { Component, Output, EventEmitter } from '@angular/core';
   selector: 'app-change-number',
   standalone: false,
   templateUrl: './change-number.component.html',
-  styleUrl: './change-number.component.css'
+  styleUrl: './change-number.component.css',
 })
 export class ChangeNumberComponent {
   @Output() changeNumber: EventEmitter<any> = new EventEmitter();
 
-  handleClick(){
+  handleClick() {
     this.changeNumber.emit();
   }
 }

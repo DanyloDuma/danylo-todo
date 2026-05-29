@@ -4,12 +4,12 @@ import { Component } from '@angular/core';
   selector: 'app-emitter',
   standalone: false,
   templateUrl: './emitter.component.html',
-  styleUrl: './emitter.component.css'
+  styleUrl: './emitter.component.css',
 })
 export class EmitterComponent {
-  myNumber: number=0;
+  myNumber: number = 0;
 
-  onChangeNumber(){
-    this.myNumber=Math.floor(Math.random()*10);
+  onChangeNumber() {
+    this.myNumber = Math.floor(Math.random() * 10);
   }
 }
