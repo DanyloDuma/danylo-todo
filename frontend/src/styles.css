@@ -6,5 +6,25 @@
 }
 
 body {
-  background-color: rgb(52, 78, 65);
+  /* Define o caminho a partir da raiz assets */
+  background-image: url("assets/images/background.jpg");
+
+  /* Garante que a imagem cobre o ecrã inteiro sem distorcer */
+  background-size: cover;
+
+  /* Fixa o background para que ele não role junto com a página */
+  background-attachment: fixed;
+
+  /* Centraliza a imagem no ecrã */
+  background-position: center;
+
+  /* Evita que a imagem se repita caso o ecrã seja gigante */
+  background-repeat: no-repeat;
+
+  /* Um fallback de cor escura caso a imagem demore a carregar */
+  background-color: #0f0f12;
+
+  /* Garante que o body ocupa pelo menos a altura total do ecrã */
+  min-height: 100vh;
+  margin: 0;
 }

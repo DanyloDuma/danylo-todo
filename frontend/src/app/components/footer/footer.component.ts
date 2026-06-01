@@ -20,19 +20,4 @@ export class FooterComponent {
   setCircleScale(index: number, isHovered: boolean): void {
     this.circleScales[index] = isHovered ? 'scale(1.2)' : 'scale(1)';
   }
-
-  /**
-   * Substitui a lógica de smooth scroll nativa do JS puro usando a API do Angular/DOM
-   */
-  scrollToSection(event: Event, targetId: string): void {
-    event.preventDefault();
-    const targetElement = document.querySelector(targetId);
-
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-    }
-  }
 }
