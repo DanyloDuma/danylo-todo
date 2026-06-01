@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="site-header__wrapper">
+    <!-- Lado Esquerdo: Logo / Marca -->
+    <div class="site-header__start">
+      <a href="#" class="brand">To-oD</a>
+    </div>
+
+    <!-- Centro: Links de Navegação -->
+    <div class="site-header__middle">
+      <nav class="nav">
+        <button
+          class="nav__toggle"
+          type="button"
+          (click)="toggleMenu()"
+          [attr.aria-expanded]="isMenuOpen ? 'true' : 'false'"
+          [attr.aria-label]="isMenuOpen ? 'close menu' : 'menu'"
+        >
+          <span class="hamburger"></span>
+        </button>
+
+        <ul class="nav__wrapper" [ngClass]="{ active: isMenuOpen }">
+          <li class="nav__item"><a href="#">Home</a></li>
+          <li class="nav__item"><a href="#">Dashboard</a></li>
+          <li class="nav__item"><a href="#">Tarefas</a></li>
+          <li class="nav__item"><a href="#">Histórico</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Lado Direito: Ação de Login (Estilizada como Botão Moderno) -->
+    <div class="site-header__end">
+      <a href="#" class="btn-signup">Sign up</a>
+      <a href="#" class="btn-signin">login</a>
+    </div>
+  </div>
+</header>
