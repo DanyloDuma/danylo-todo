@@ -8,7 +8,7 @@
   transform: translateX(-50%);
   z-index: 1000;
   width: calc(100% - 60px);
-  max-width: 1000px;
+  max-width: 1800px;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -112,7 +112,6 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* ==================== NAVIGATION LINKS (DESKTOP) ==================== */
 .navbar-nav {
   display: flex;
   align-items: center;
@@ -207,7 +206,6 @@
   transform: scale(1.1);
 }
 
-/* ==================== CTA BUTTON ==================== */
 .cta-button {
   background: linear-gradient(135deg, #588157, #77ac76);
   color: white;
@@ -227,7 +225,6 @@
   box-shadow: 0 10px 20px rgba(134, 202, 126, 0.3);
 }
 
-/* ==================== MOBILE MENU TOGGLE (HAMBURGER) ==================== */
 .mobile-toggle {
   display: none;
   background: none;
@@ -279,7 +276,6 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ==================== MOBILE RESPONSIVE MEDIA QUERIES ==================== */
 @media (max-width: 992px) {
   .navbar-container {
     top: 20px;
@@ -326,7 +322,6 @@
   visibility: visible;
 }
 
-/* Mobile Menu Container */
 .mobile-menu {
   position: fixed;
   top: 0;
@@ -352,7 +347,6 @@
   transform: translateY(0);
 }
 
-/* Mobile Menu Header */
 .mobile-menu-header {
   display: flex;
   justify-content: space-between;
