@@ -1,36 +1,111 @@
-<header class="site-header">
-  <div class="site-header__wrapper">
-    <!-- Lado Esquerdo: Logo / Marca -->
-    <div class="site-header__start">
-      <a href="#" class="brand">To-oD</a>
-    </div>
+<div class="navbar-container" [ngClass]="{ scrolled: isScrolled }">
+  <nav class="navbar">
+    <a routerLink="#" class="navbar-brand" (click)="setActive('#home')">
+      <div class="logo-icon"></div>
+      <span class="brand-text">To-oD</span>
+    </a>
 
-    <!-- Centro: Links de Navegação -->
-    <div class="site-header__middle">
-      <nav class="nav">
-        <button
-          class="nav__toggle"
-          type="button"
-          (click)="toggleMenu()"
-          [attr.aria-expanded]="isMenuOpen ? 'true' : 'false'"
-          [attr.aria-label]="isMenuOpen ? 'close menu' : 'menu'"
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          routerLink="#home"
+          class="nav-link"
+          [ngClass]="{ active: activeTarget === '#home' }"
+          (click)="$event.preventDefault(); setActive('#home')"
+          >Home</a
         >
-          <span class="hamburger"></span>
-        </button>
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="#about"
+          class="nav-link"
+          [ngClass]="{ active: activeTarget === '#about' }"
+          (click)="$event.preventDefault(); setActive('#about')"
+          >Sobre</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="#services"
+          class="nav-link"
+          [ngClass]="{ active: activeTarget === '#services' }"
+          (click)="$event.preventDefault(); setActive('#services')"
+          >Serviços</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="#contact"
+          class="cta-button"
+          (click)="$event.preventDefault(); setActive('#contact')"
+          >Log in</a
+        >
+      </li>
+    </ul>
 
-        <ul class="nav__wrapper" [ngClass]="{ active: isMenuOpen }">
-          <li class="nav__item"><a href="#">Home</a></li>
-          <li class="nav__item"><a href="#">Dashboard</a></li>
-          <li class="nav__item"><a href="#">Tarefas</a></li>
-          <li class="nav__item"><a href="#">Histórico</a></li>
-        </ul>
-      </nav>
-    </div>
+    <button
+      class="mobile-toggle"
+      [ngClass]="{ active: isMenuOpen }"
+      (click)="toggleMenu($event)"
+    >
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </nav>
+</div>
 
-    <!-- Lado Direito: Ação de Login (Estilizada como Botão Moderno) -->
-    <div class="site-header__end">
-      <a href="#" class="btn-signup">Sign up</a>
-      <a href="#" class="btn-signin">login</a>
-    </div>
+<div
+  class="mobile-menu-overlay"
+  [ngClass]="{ active: isMenuOpen }"
+  (click)="closeMenu()"
+></div>
+
+<div class="mobile-menu" [ngClass]="{ active: isMenuOpen }">
+  <div class="mobile-menu-header">
+    <a href="#" class="mobile-menu-brand" (click)="setActive('#home')">
+      <span class="brand-text">To-oD</span>
+    </a>
+    <button class="mobile-menu-close" (click)="closeMenu()">&times;</button>
   </div>
-</header>
+
+  <ul class="mobile-menu-nav">
+    <li class="mobile-menu-item">
+      <a
+        href="#home"
+        class="mobile-menu-link"
+        [ngClass]="{ active: activeTarget === '#home' }"
+        (click)="$event.preventDefault(); setActive('#home')"
+        >Home</a
+      >
+    </li>
+    <li class="mobile-menu-item">
+      <a
+        href="#about"
+        class="mobile-menu-link"
+        [ngClass]="{ active: activeTarget === '#about' }"
+        (click)="$event.preventDefault(); setActive('#about')"
+        >Sobre</a
+      >
+    </li>
+    <li class="mobile-menu-item">
+      <a
+        href="#services"
+        class="mobile-menu-link"
+        [ngClass]="{ active: activeTarget === '#services' }"
+        (click)="$event.preventDefault(); setActive('#services')"
+        >Serviços</a
+      >
+    </li>
+    <div class="mobile-cta">
+      <a
+        href="#contact"
+        class="mobile-cta-button"
+        (click)="$event.preventDefault(); setActive('#contact')"
+        >Log-in</a
+      >
+    </div>
+  </ul>
+</div>
