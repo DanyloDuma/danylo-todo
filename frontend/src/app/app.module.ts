@@ -10,7 +10,6 @@ import { HomeComponent } from './components/home/home.component';
 import { SobreComponent } from './components/sobre/sobre.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { LoginComponent } from './components/login/login.component';
-import { MainUiComponent } from './components/main-ui/main-ui.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     SobreComponent,
     ContatoComponent,
     LoginComponent,
-    MainUiComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
