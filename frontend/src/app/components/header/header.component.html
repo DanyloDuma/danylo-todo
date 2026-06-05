@@ -74,7 +74,7 @@
   <ul class="mobile-menu-nav">
     <li class="mobile-menu-item">
       <a
-        routerLink="#"
+        routerLink="/"
         class="mobile-menu-link"
         [ngClass]="{ active: activeTarget === '#home' }"
         (click)="$event.preventDefault(); setActive('#home')"
@@ -83,7 +83,7 @@
     </li>
     <li class="mobile-menu-item">
       <a
-        routerLink="#"
+        routerLink="/sobre"
         class="mobile-menu-link"
         [ngClass]="{ active: activeTarget === '#about' }"
         (click)="$event.preventDefault(); setActive('#about')"
@@ -92,18 +92,18 @@
     </li>
     <li class="mobile-menu-item">
       <a
-        routerLink="#"
+        routerLink="/contato"
         class="mobile-menu-link"
-        [ngClass]="{ active: activeTarget === '#services' }"
-        (click)="$event.preventDefault(); setActive('#services')"
+        [ngClass]="{ active: activeTarget === '#contato' }"
+        (click)="$event.preventDefault(); setActive('#contato')"
         >Serviços</a
       >
     </li>
     <div class="mobile-cta">
       <a
-        routerLink="#"
+        routerLink="/login"
         class="mobile-cta-button"
-        (click)="$event.preventDefault(); setActive('#contact')"
+        (click)="$event.preventDefault(); setActive('#login')"
         >Log-in</a
       >
     </div>
