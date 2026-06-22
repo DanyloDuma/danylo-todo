@@ -11,6 +11,7 @@ import { SobreComponent } from './components/sobre/sobre.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     SobreComponent,
     ContatoComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

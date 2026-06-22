@@ -41,6 +41,14 @@
           >Log in</a
         >
       </li>
+      <li>
+        <a
+          routerLink="/register"
+          class="cta-button"
+          (click)="$event.preventDefault(); setActive('#login')"
+          >Register</a
+        >
+      </li>
     </ul>
 
     <button
