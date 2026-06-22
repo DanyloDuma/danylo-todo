@@ -3,76 +3,75 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class TodoController extends Controller
 {
-    /**
-     * Listar todas as tarefas (GET /api/todo)
-     */
-    public function index()
-    {
-        $todo = Todo::all();
-        return response()->json($todo, 200);
-    }
-
-    /**
-     * Criar uma nova tarefa (POST /api/todo)
-     */
-    public function store(Request $request)
+    public function index(Request $request): JsonResponse
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'due_date' => 'required|date',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
+            'status' => ['nullable', 'in:all,pending,completed'],
         ]);
 
-        $todo = Todo::create($validated);
+        $status = $validated['status'] ?? 'all';
+        $query = $request->user()->todos()->latest();
+
+        if ($status === 'pending') {
+            $query->where('is_completed', false);
+        }
+
+        if ($status === 'completed') {
+            $query->where('is_completed', true);
+        }
+
+        return response()->json($query->get());
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'is_completed' => ['sometimes', 'boolean'],
+        ]);
+
+        $todo = $request->user()->todos()->create($validated);
+
         return response()->json($todo, 201);
     }
 
-    /**
-     * Mostrar uma tarefa específica (GET /api/todo/{id})
-     */
-    public function show(Todo $todo)
+    public function show(Request $request, int $todo): JsonResponse
     {
-        // O Laravel faz a busca automática no MySQL usando o ID que vem na URL
-        return response()->json($todo, 200);
+        return response()->json($this->findUserTodo($request, $todo));
     }
 
-    /**
-     * Atualizar uma tarefa (PUT /api/todo/{id})
-     */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, int $todo): JsonResponse
     {
-        // Validamos apenas o que o utilizador pode querer atualizar
         $validated = $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'description' => 'nullable|string',
-            'due_date' => 'sometimes|required|date',
-            'category_id' => 'sometimes|required|exists:categories,id',
-            'is_completed' => 'sometimes|required|boolean',
+            'title' => ['sometimes', 'required', 'string', 'max:255'],
+            'description' => ['sometimes', 'nullable', 'string'],
+            'is_completed' => ['sometimes', 'boolean'],
         ]);
 
-        // Se o prazo for alterado, reiniciamos o controlo do alerta em background
-        if (isset($validated['due_date']) && $validated['due_date'] !== $todo->due_date) {
-            $validated['alert_sent'] = false;
-        }
+        $todo = $this->findUserTodo($request, $todo);
 
         $todo->update($validated);
-        return response()->json($todo, 200);
+
+        return response()->json($todo);
     }
 
-    /**
-     * Eliminar uma tarefa (DELETE /api//{id})
-     */
-    public function destroy(Todo $todo)
+    public function destroy(Request $request, int $todo): Response
     {
+        $todo = $this->findUserTodo($request, $todo);
         $todo->delete();
 
-        // Retorna uma mensagem de sucesso confirmando a eliminação
-        return response()->json(['message' => 'Tarefa eliminada com sucesso.'], 200);
+        return response()->noContent();
+    }
+
+    private function findUserTodo(Request $request, int $todoId): Todo
+    {
+        return $request->user()->todos()->findOrFail($todoId);
     }
 }

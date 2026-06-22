@@ -1,16 +1,35 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { of } from 'rxjs';
 
 import { LoginComponent } from './login.component';
+import { AuthService } from '../../services/auth.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let authService: jasmine.SpyObj<AuthService>;
 
   beforeEach(async () => {
+    authService = jasmine.createSpyObj<AuthService>('AuthService', [
+      'isAuthenticated',
+      'login',
+    ]);
+    authService.isAuthenticated.and.returnValue(false);
+    authService.login.and.returnValue(
+      of({
+        user: { id: 1, name: 'Ana', email: 'ana@example.com' },
+        token: 'token',
+        token_type: 'Bearer',
+      }),
+    );
+
     await TestBed.configureTestingModule({
-      declarations: [LoginComponent]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule, RouterModule.forRoot([])],
+      declarations: [LoginComponent],
+      providers: [{ provide: AuthService, useValue: authService }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
@@ -19,5 +38,19 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should submit valid credentials', () => {
+    component.loginForm.setValue({
+      email: 'ana@example.com',
+      password: 'password123',
+    });
+
+    component.submit();
+
+    expect(authService.login).toHaveBeenCalledWith({
+      email: 'ana@example.com',
+      password: 'password123',
+    });
   });
 });

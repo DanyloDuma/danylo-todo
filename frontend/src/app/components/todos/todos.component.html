@@ -1,0 +1,94 @@
+<div class="todos-page">
+  <main class="content">
+    <section class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow">Olá<span *ngIf="user">, {{ user.name }}</span></p>
+        <h1>O que precisas de fazer?</h1>
+        <p>Cria, conclui e organiza as tuas tarefas num só lugar.</p>
+      </div>
+      <div class="hero-mark" aria-hidden="true">✓</div>
+    </section>
+
+    <section class="todo-form-card" aria-labelledby="form-title">
+      <div class="section-heading">
+        <div>
+          <h2 id="form-title">{{ editingTodoId ? 'Editar tarefa' : 'Nova tarefa' }}</h2>
+          <p>{{ editingTodoId ? 'Atualiza os dados da tarefa.' : 'Adiciona uma tarefa à tua lista.' }}</p>
+        </div>
+        <button *ngIf="editingTodoId" type="button" class="text-button" (click)="cancelEdit()">
+          Cancelar edição
+        </button>
+      </div>
+
+      <form [formGroup]="todoForm" (ngSubmit)="submit()" novalidate>
+        <div class="form-field title-field">
+          <label for="title">Título</label>
+          <input id="title" type="text" formControlName="title" maxlength="255" placeholder="Ex.: Estudar Angular" />
+          <small *ngIf="todoForm.controls.title.touched && todoForm.controls.title.invalid">
+            O título é obrigatório.
+          </small>
+        </div>
+
+        <div class="form-field description-field">
+          <label for="description">Descrição <span>(opcional)</span></label>
+          <input id="description" type="text" formControlName="description" placeholder="Adiciona algum contexto" />
+        </div>
+
+        <button class="primary-button" type="submit" [disabled]="isSaving">
+          {{ isSaving ? 'A guardar...' : editingTodoId ? 'Guardar alterações' : 'Adicionar tarefa' }}
+        </button>
+      </form>
+    </section>
+
+    <div class="alert" *ngIf="errorMessage" role="alert">
+      {{ errorMessage }}
+      <button type="button" (click)="errorMessage = ''" aria-label="Fechar erro">×</button>
+    </div>
+
+    <section class="todo-list-card" aria-labelledby="list-title">
+      <div class="list-header">
+        <h2 id="list-title">Tarefas</h2>
+        <div class="filters" aria-label="Filtrar tarefas">
+          <button
+            *ngFor="let filter of filters"
+            type="button"
+            [class.active]="selectedFilter === filter.value"
+            [attr.aria-pressed]="selectedFilter === filter.value"
+            (click)="selectFilter(filter.value)"
+          >
+            {{ filter.label }}
+          </button>
+        </div>
+      </div>
+
+      <p class="state-message" *ngIf="isLoading">A carregar tarefas...</p>
+      <p class="state-message" *ngIf="!isLoading && todos.length === 0">
+        Ainda não existem tarefas neste filtro.
+      </p>
+
+      <ul class="todo-list" *ngIf="!isLoading && todos.length > 0">
+        <li *ngFor="let todo of todos; trackBy: trackTodo" [class.completed]="todo.is_completed">
+          <button
+            type="button"
+            class="status-button"
+            [class.checked]="todo.is_completed"
+            (click)="toggleTodo(todo)"
+            [attr.aria-label]="todo.is_completed ? 'Marcar como pendente' : 'Marcar como concluída'"
+          >
+            <span *ngIf="todo.is_completed">✓</span>
+          </button>
+
+          <div class="todo-content">
+            <h3>{{ todo.title }}</h3>
+            <p *ngIf="todo.description">{{ todo.description }}</p>
+          </div>
+
+          <div class="todo-actions">
+            <button type="button" class="edit-button" (click)="startEdit(todo)">Editar</button>
+            <button type="button" class="delete-button" (click)="deleteTodo(todo)">Apagar</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+</div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +9,14 @@ import { filter } from 'rxjs/operators';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Danylo Todo';
+  showLayout = false;
 
-  showLayout = true;
-
-  constructor(private router: Router) {
-    this.router.events
+  constructor(router: Router) {
+    router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        const hiddenRoutes = ['/login', '/register'];
-
-        this.showLayout = !hiddenRoutes.includes(this.router.url);
+      .subscribe((event) => {
+        this.showLayout = !['/login', '/register'].includes(event.urlAfterRedirects);
       });
   }
 }

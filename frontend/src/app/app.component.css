@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: transparent;
+}
+
+.app-content {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.app-content.with-layout {
+  min-height: calc(100vh - 118px);
+}

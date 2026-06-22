@@ -1,1 +1,68 @@
-<p>register works!</p>
+<main class="auth-page">
+  <section class="auth-card" aria-labelledby="register-title">
+    <a class="brand" routerLink="/todos">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Danylo Todo
+    </a>
+    <p class="eyebrow">Nova conta</p>
+    <h1 id="register-title">Criar conta</h1>
+    <p class="subtitle">Regista-te para começares a organizar as tuas tarefas.</p>
+
+    <div class="alert" *ngIf="errorMessage" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()" novalidate>
+      <div class="form-field">
+        <label for="name">Nome</label>
+        <input id="name" type="text" formControlName="name" autocomplete="name" />
+        <small *ngIf="registerForm.controls.name.touched && registerForm.controls.name.invalid">
+          O nome é obrigatório.
+        </small>
+      </div>
+
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" formControlName="email" autocomplete="email" />
+        <small *ngIf="registerForm.controls.email.touched && registerForm.controls.email.hasError('required')">
+          O email é obrigatório.
+        </small>
+        <small *ngIf="registerForm.controls.email.touched && registerForm.controls.email.hasError('email')">
+          Introduz um email válido.
+        </small>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password" autocomplete="new-password" />
+          <small *ngIf="registerForm.controls.password.touched && registerForm.controls.password.hasError('minlength')">
+            Usa pelo menos 8 caracteres.
+          </small>
+          <small *ngIf="registerForm.controls.password.touched && registerForm.controls.password.hasError('required')">
+            A password é obrigatória.
+          </small>
+        </div>
+
+        <div class="form-field">
+          <label for="password-confirmation">Confirmar password</label>
+          <input
+            id="password-confirmation"
+            type="password"
+            formControlName="password_confirmation"
+            autocomplete="new-password"
+          />
+          <small *ngIf="registerForm.controls.password_confirmation.touched && registerForm.hasError('passwordsMismatch')">
+            As passwords não coincidem.
+          </small>
+        </div>
+      </div>
+
+      <button class="primary-button" type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'A criar conta...' : 'Criar conta' }}
+      </button>
+    </form>
+
+    <p class="auth-link">Já tens conta? <a routerLink="/login">Iniciar sessão</a></p>
+  </section>
+</main>

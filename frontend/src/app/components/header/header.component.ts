@@ -1,61 +1,32 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
-  isMenuOpen = false;
-  isScrolled = false;
-  activeTarget = '#home'; // Controla qual o link ativo
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
-  // Substitui o "window.addEventListener('scroll')" do JS puro
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    this.isScrolled = scrollTop > 50;
+  isLoggingOut = false;
+
+  get isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
   }
 
-  // Substitui o "window.addEventListener('resize')"
-  @HostListener('window:resize', [])
-  onResize() {
-    if (window.innerWidth > 992 && this.isMenuOpen) {
-      this.closeMenu();
+  logout(): void {
+    if (this.isLoggingOut) {
+      return;
     }
-  }
 
-  // Fecha o menu se clicares na tecla Escape
-  @HostListener('document:keydown.escape', [])
-  onEscape() {
-    this.closeMenu();
-  }
-
-  toggleMenu(event: Event): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.isMenuOpen = !this.isMenuOpen;
-    this.toggleBodyScroll();
-  }
-
-  closeMenu(): void {
-    this.isMenuOpen = false;
-    this.toggleBodyScroll();
-  }
-
-  setActive(target: string): void {
-    this.activeTarget = target;
-    this.closeMenu(); // Fecha o menu mobile ao clicar num link
-
-    // Smooth scroll nativo
-    const element = document.querySelector(target);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }
-
-  private toggleBodyScroll(): void {
-    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
+    this.isLoggingOut = true;
+    this.authService.logout().subscribe({
+      next: () => void this.router.navigate(['/login']),
+      error: () => void this.router.navigate(['/login']),
+    });
   }
 }

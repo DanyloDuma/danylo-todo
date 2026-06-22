@@ -17,7 +17,16 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        let message = 'Ocorreu um erro inesperado';
+        const validationErrors = error.error?.errors as
+          | Record<string, string[]>
+          | undefined;
+        const firstValidationMessage = validationErrors
+          ? Object.values(validationErrors).flat()[0]
+          : undefined;
+        let message =
+          firstValidationMessage ||
+          error.error?.message ||
+          'Ocorreu um erro inesperado';
 
         switch (error.status) {
           case 0:
@@ -37,8 +46,6 @@ export class ErrorInterceptor implements HttpInterceptor {
               message = 'Erro interno do servidor';
             }
         }
-
-        console.error(message, error);
 
         return throwError(
           () =>

@@ -13,22 +13,13 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-
-            // Relações (Chaves Estrangeiras)
-            // Se um utilizador for apagado, apaga os seus todos (onDelete cascade)
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-
-            // Dados da Tarefa
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->dateTime('due_date'); // Data e hora limite
             $table->boolean('is_completed')->default(false);
-
-            // Controlo do Alerta (Para o Laravel saber se já avisou 1 dia antes)
-            $table->boolean('alert_sent')->default(false);
-
             $table->timestamps();
+
+            $table->index(['user_id', 'is_completed']);
         });
     }
 

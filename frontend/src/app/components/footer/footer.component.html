@@ -1,57 +1,7 @@
-<div class="floating-elements">
-  <div
-    class="floating-circle"
-    [style.transform]="circleScales[0]"
-    (mouseenter)="setCircleScale(0, true)"
-    (mouseleave)="setCircleScale(0, false)"
-  ></div>
-  <div
-    class="floating-circle"
-    [style.transform]="circleScales[1]"
-    (mouseenter)="setCircleScale(1, true)"
-    (mouseleave)="setCircleScale(1, false)"
-  ></div>
-  <div
-    class="floating-circle"
-    [style.transform]="circleScales[2]"
-    (mouseenter)="setCircleScale(2, true)"
-    (mouseleave)="setCircleScale(2, false)"
-  ></div>
-</div>
-
 <footer class="footer">
-  <div class="footer-content">
-    <a routerLink="#home" class="footer-brand">
-      <div class="footer-logo"></div>
-      <span class="brand-text">To-oD</span>
-    </a>
-
-    <ul class="footer-links">
-      <li>
-        <a routerLink="#home" class="footer-link">Home</a>
-      </li>
-      <li>
-        <a routerLink="#about" class="footer-link">Sobre</a>
-      </li>
-      <li>
-        <a routerLink="#contact" class="footer-link">Contato</a>
-      </li>
-    </ul>
-
-    <div class="footer-social">
-      <a routerLink="#" class="social-link" aria-label="GitHub">
-        <svg class="social-icon" viewBox="0 0 24 24"></svg>
-      </a>
-      <a routerLink="#" class="social-link" aria-label="Instagram">
-        <svg class="social-icon" viewBox="0 0 24 24"></svg>
-      </a>
-      <a routerLink="#" class="social-link" aria-label="LinkedIn">
-        <svg class="social-icon" viewBox="0 0 24 24"></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="footer-copy">
-    <p>&copy; {{ currentYear }} To-oD. Todos os direitos reservados.</p>
-  </div>
+  <a routerLink="/todos" class="footer-brand">
+    <span class="footer-logo" aria-hidden="true"></span>
+    <span>Danylo Todo</span>
+  </a>
+  <p>To-Do | Fullstack • {{ currentYear }}</p>
 </footer>

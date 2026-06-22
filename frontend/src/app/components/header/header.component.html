@@ -1,119 +1,31 @@
-<div class="navbar-container" [ngClass]="{ scrolled: isScrolled }">
-  <nav class="navbar">
-    <a routerLink="#" class="navbar-brand" (click)="setActive('#home')">
-      <div class="logo-icon"></div>
-      <span class="brand-text">To-oD</span>
+<header class="navbar-container">
+  <nav class="navbar" aria-label="Navegação principal">
+    <a routerLink="/todos" class="navbar-brand" aria-label="Danylo Todo">
+      <span class="logo-icon" aria-hidden="true"></span>
+      <span class="brand-text">Danylo Todo</span>
     </a>
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a
-          routerLink="/"
-          class="nav-link"
-          [ngClass]="{ active: activeTarget === '#home' }"
-          (click)="$event.preventDefault(); setActive('#home')"
-          >Home</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          routerLink="/sobre"
-          class="nav-link"
-          [ngClass]="{ active: activeTarget === '#about' }"
-          (click)="$event.preventDefault(); setActive('#about')"
-          >Sobre</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          routerLink="/contato"
-          class="nav-link"
-          [ngClass]="{ active: activeTarget === '#Contato' }"
-          (click)="$event.preventDefault(); setActive('#Contato')"
-          >Contato</a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="/login"
-          class="cta-button"
-          (click)="$event.preventDefault(); setActive('#login')"
-          >Log in</a
-        >
-      </li>
-      <li>
-        <a
-          routerLink="/register"
-          class="cta-button"
-          (click)="$event.preventDefault(); setActive('#login')"
-          >Register</a
-        >
-      </li>
-    </ul>
-
-    <button
-      class="mobile-toggle"
-      [ngClass]="{ active: isMenuOpen }"
-      (click)="toggleMenu($event)"
-    >
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </button>
-  </nav>
-</div>
-
-<div
-  class="mobile-menu-overlay"
-  [ngClass]="{ active: isMenuOpen }"
-  (click)="closeMenu()"
-></div>
-
-<div class="mobile-menu" [ngClass]="{ active: isMenuOpen }">
-  <div class="mobile-menu-header">
-    <a routerLink="/" class="mobile-menu-brand" (click)="setActive('#home')">
-      <span class="brand-text">To-oD</span>
-    </a>
-    <button class="mobile-menu-close" (click)="closeMenu()">&times;</button>
-  </div>
-
-  <ul class="mobile-menu-nav">
-    <li class="mobile-menu-item">
+    <div class="nav-actions">
       <a
-        routerLink="/"
-        class="mobile-menu-link"
-        [ngClass]="{ active: activeTarget === '#home' }"
-        (click)="$event.preventDefault(); setActive('#home')"
-        >Home</a
+        *ngIf="isAuthenticated"
+        routerLink="/todos"
+        routerLinkActive="active"
+        class="nav-link"
       >
-    </li>
-    <li class="mobile-menu-item">
-      <a
-        routerLink="/sobre"
-        class="mobile-menu-link"
-        [ngClass]="{ active: activeTarget === '#about' }"
-        (click)="$event.preventDefault(); setActive('#about')"
-        >Sobre</a
+        Tarefas
+      </a>
+      <button
+        *ngIf="isAuthenticated"
+        type="button"
+        class="cta-button"
+        [disabled]="isLoggingOut"
+        (click)="logout()"
       >
-    </li>
-    <li class="mobile-menu-item">
-      <a
-        routerLink="/contato"
-        class="mobile-menu-link"
-        [ngClass]="{ active: activeTarget === '#contato' }"
-        (click)="$event.preventDefault(); setActive('#contato')"
-        >Serviços</a
-      >
-    </li>
-    <div class="mobile-cta">
-      <a
-        routerLink="/login"
-        class="mobile-cta-button"
-        (click)="$event.preventDefault(); setActive('#login')"
-        >Log-in</a
-      >
+        {{ isLoggingOut ? 'A sair...' : 'Logout' }}
+      </button>
+
+      <a *ngIf="!isAuthenticated" routerLink="/login" class="nav-link">Login</a>
+      <a *ngIf="!isAuthenticated" routerLink="/register" class="cta-button">Registo</a>
     </div>
-  </ul>
-</div>
+  </nav>
+</header>

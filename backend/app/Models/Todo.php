@@ -4,19 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Todo extends Model
 {
     use HasFactory;
 
-    // Colunas que o Laravel pode preencher automaticamente
+    protected $attributes = [
+        'is_completed' => false,
+    ];
+
     protected $fillable = [
-        'user_id',
-        'category_id',
         'title',
         'description',
-        'due_date',
         'is_completed',
-        'alert_sent'
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_completed' => 'boolean',
+        ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

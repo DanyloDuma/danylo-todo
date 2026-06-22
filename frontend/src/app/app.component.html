@@ -1,6 +1,6 @@
 <app-header *ngIf="showLayout"></app-header>
 
-<main class="app-content">
+<main class="app-content" [class.with-layout]="showLayout">
   <router-outlet></router-outlet>
 </main>
 
